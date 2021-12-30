@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::any('/login', [\App\Http\Controllers\HomeController::class, 'login'])->name('login');
+Route::any('/signup', [\App\Http\Controllers\HomeController::class, 'signup']);
+Route::any('/logout', [\App\Http\Controllers\HomeController::class, 'logout']);
+
+/**
+ * Admin panel routes
+ */
+Route::any('/cp', [\App\Http\Controllers\AdminController::class, 'index'])->middleware(['auth', 'admin']);
+Route::any('/cp/users', [\App\Http\Controllers\AdminController::class, 'users'])->middleware(['auth', 'admin']);
+Route::any('/cp/settings', [\App\Http\Controllers\AdminController::class, 'settings'])->middleware(['auth', 'admin']);
+Route::any('/cp/email', [\App\Http\Controllers\AdminController::class, 'email'])->middleware(['auth', 'admin']);
+Route::any('/cp/modules', [\App\Http\Controllers\AdminController::class, 'modules'])->middleware(['auth', 'admin']);
+Route::any('/cp/pages', [\App\Http\Controllers\AdminController::class, 'pages'])->middleware(['auth', 'admin']);
+Route::any('/cp/themes', [\App\Http\Controllers\AdminController::class, 'themes'])->middleware(['auth', 'admin']);

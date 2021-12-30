@@ -1,3 +1,4 @@
+DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
@@ -7,11 +8,19 @@
 
     RewriteCond %{REQUEST_FILENAME} -d [OR]
     RewriteCond %{REQUEST_FILENAME} -f
+        RewriteCond %{REQUEST_URI} !(install) [NC]
+    RewriteCond %{REQUEST_FILENAME} !^(.*).(js|jpg|css|gif|png|otf)$
+
     RewriteRule ^ ^$1 [N]
 
     RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
+    RewriteCond %{REQUEST_FILENAME} !^(.*).(js|jpg|css|gif|png|otf)$
+    RewriteCond %{REQUEST_URI} !(install) [NC]
     RewriteRule ^(.*)$ public/$1
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ server.php
+
+
+</IfModule>
