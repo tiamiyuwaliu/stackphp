@@ -6,6 +6,6 @@ class Hook extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'Hook';
+        return \App\Package\Hook::class;
     }
 }
