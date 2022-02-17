@@ -34,7 +34,8 @@ class User   {
     }
 
     public function getUser($userid = null) {
-        if ($userid == $this->authId) return $this->authUser;
+
+        if ($userid == $this->authId or !$userid) return $this->authUser;
         //we can make query to find this user
     }
 

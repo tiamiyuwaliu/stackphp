@@ -17,6 +17,7 @@ class Controller extends BaseController
     private $pageTitle = "";
     private $pageLayout = "layouts.app";
     public $activeMenu = "";
+    public $activeSubMenu = "";
     private $rtl = false;
 
     public function __construct()
@@ -40,8 +41,14 @@ class Controller extends BaseController
         return $this;
     }
 
-    public function setActiveMenu($menu) {
+    public function setActiveMenu($menu)
+    {
         $this->activeMenu = $menu;
+        return $this;
+    }
+
+    public function setActiveSubMenu($menu) {
+        $this->activeSubMenu = $menu;
         return $this;
     }
 
@@ -61,9 +68,11 @@ class Controller extends BaseController
     }
 
     public function render($content, $wrap = true) {
+
         Blade::withoutDoubleEncoding();
 
         if ($wrap) {
+
             $content = view($this->pageLayout, array('content' => $content, 'controller' => $this));
         }
         if (isAjax()) {
@@ -73,6 +82,7 @@ class Controller extends BaseController
                 'container' => '#page-container',
             ));
         }
+
         $content = view('layouts.base', array(
             'content' => $content,
             'title' => $this->pageTitle,

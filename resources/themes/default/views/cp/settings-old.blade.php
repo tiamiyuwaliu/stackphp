@@ -177,21 +177,7 @@
                         </div>
 
                         <hr/>
-                        <div class="custom-control custom-checkbox mb-4">
-                            <input type="hidden" name="val[enable-captcha]" value="0"/>
-                            <input type="checkbox" name="val[enable-captcha]" {{config('enable-captcha', false) ? 'checked' : null}} class="custom-control-input" id="customCheck3">
-                            <label class="custom-control-label" for="customCheck3">Google reCaptcha V2</label>
-                        </div>
 
-                        <div class="form-floating mt-3">
-                            <input placeholder="{{__('messages.captcha-site-key')}}" type="text" class="form-control" value="{{config('captcha-site-key')}}" name="val[captcha-site-key]"/>
-                            <label>{{__('messages.captcha-site-key')}}</label>
-                        </div>
-
-                        <div class="form-floating mt-3">
-                            <input placeholder="{{__('messages.captcha-site-secret-key')}}" type="text" class="form-control" value="{{config('captcha-site-secret-key')}}" name="val[captcha-site-secret-key]"/>
-                            <label>{{__('messages.captcha-site-secret-key')}}</label>
-                        </div>
                         <hr/>
                         <div class="custom-control custom-checkbox mb-4">
                             <input type="hidden" name="val[facebook-login]" value="0"/>

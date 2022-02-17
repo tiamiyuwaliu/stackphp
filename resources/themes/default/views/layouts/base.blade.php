@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap CSS -->
     @if($rtl)
-        <link href="{{url('resources/themes/default/css/plugin-rtl.min.css')}}" rel="stylesheet"  >
+        <link href="{{url('resources/themes/default/css/plugin-rtl.min.css')}}?time={{filemtime(base_path('resources/themes/default/css/plugin-rtl.min.css'))}}" rel="stylesheet"  >
     @else
-        <link href="{{url('resources/themes/default/css/plugin.min.css')}}" rel="stylesheet"  >
+        <link href="{{url('resources/themes/default/css/plugin.min.css')}}?time={{filemtime(base_path('resources/themes/default/css/plugin.min.css'))}}" rel="stylesheet"  >
     @endif
     <link href="{{url('resources/themes/default/css/'.$pageType.'.css')}}?time={{filemtime(base_path('resources/themes/default/css/'.$pageType.'.css'))}}" rel="stylesheet"  >
         <title>{{$title}}</title>
@@ -30,8 +30,8 @@
         cancel: '{{__('messages.cancel')}}'
     };
 </script>
-<script src="{{url('resources/themes/default/js/plugin.min.js')}}?time={{time()}}" ></script>
-<script src="{{url('resources/themes/default/js/app.js')}}?time={{time()}}" ></script>
+<script src="{{url('resources/themes/default/js/plugin.min.js')}}?time={{filemtime(base_path('resources/themes/default/js/plugin.min.js'))}}" ></script>
+<script src="{{url('resources/themes/default/js/app.js')}}?time={{filemtime(base_path('resources/themes/default/js/app.js'))}}" ></script>
 
 </body>
 </html>
