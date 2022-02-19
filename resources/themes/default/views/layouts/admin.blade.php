@@ -20,7 +20,7 @@
                         <li class="{{($controller->activeMenu == 'settings' ? 'active' : '')}}"><a data-ajax="true" href="{{url('cp/settings')}}">{{__('messages.general-configuration')}} </a> </li>
                         <li class="{{($controller->activeMenu == 'information' ? 'active' : '')}}"><a href="{{url('cp/settings/information')}}" data-ajax="true">{{__('messages.website-information')}} </a> </li>
                         <li class="{{($controller->activeMenu == 'email' ? 'active' : '')}}"><a href="{{url('cp/settings/email')}}" data-ajax="true">{{__('messages.email-setup')}} </a> </li>
-                        <li class="{{($controller->activeMenu == 'social' ? 'active' : '')}}"><a href="{{url('cp/settings/social')}}" data-ajax="true">{{__('messages.social-login-settings')}} </a> </li>
+                        <li class="{{($controller->activeMenu == 'social' ? 'active' : '')}}"><a href="{{url('cp/settings/social')}}" data-ajax="true">{{__('messages.social-settings')}} </a> </li>
                         <li class="{{($controller->activeMenu == 'upload' ? 'active' : '')}}"><a href="{{url('cp/settings/upload')}}" data-ajax="true">{{__('messages.upload-configuration')}} </a> </li>
                     </ul>
                 </li>
@@ -36,8 +36,7 @@
 
                     <ul>
                        <li class="{{($controller->activeMenu == 'users' ? 'active' : '')}}">
-                           <a data-ajax="true" href="{{url('cp/users')}}" >{{__('messages.users-manager')}}</a>
-                           <a data-ajax="true" href="{{url('cp/users')}}" >{{__('messages.add-user')}}</a>
+                           <a data-ajax="true" href="{{url('cp/users')}}" >{{__('messages.users-list')}}</a>
                        </li>
                     </ul>
                 </li>
@@ -50,15 +49,14 @@
             </ul>
             <h4>{{__('messages.others')}}</h4>
             <ul>
-                <li class="has-sub-menus {{($controller->activeSubMenu == 'languages' ? 'opened' : '')}}">
-                    <a  href="" onclick="return App.openMenu(this)"><i class="bi bi-people" ></i> {{__('messages.users-manager')}}</a>
+                <li class="has-sub-menus {{($controller->activeSubMenu == 'tools' ? 'opened' : '')}}">
+                    <a  href="" onclick="return App.openMenu(this)"><i class="bi bi-wrench"></i> {{__('messages.tools')}}</a>
                     <i class="bi bi-plus plus"></i>
                     <i class="bi bi-dash dash"></i>
 
                     <ul>
-                        <li class="{{($controller->activeMenu == 'users' ? 'active' : '')}}">
-                            <a data-ajax="true" href="{{url('cp/users')}}" >{{__('messages.users-manager')}}</a>
-                            <a data-ajax="true" href="{{url('cp/users')}}" >{{__('messages.add-user')}}</a>
+                        <li class="{{($controller->activeMenu == 'sitemap' ? 'active' : '')}}">
+                            <a data-ajax="true" href="{{url('cp/sitemap')}}" >{{__('messages.generate-sitemap')}}</a>
                         </li>
                     </ul>
                 </li>
@@ -94,7 +92,8 @@
                         {{\App\Repositories\User::repository()->getUser()->name}}
                     </a>
                     <div class="dropdown-menu">
-                        <a href="" class="dropdown-item">Logout </a>
+                        <a href="{{url('')}}" class="dropdown-item">{{__('messages.visit-website')}} </a>
+                        <a href="{{url('logout')}}" class="dropdown-item">{{__('messages.logout')}} </a>
                     </div>
                 </li>
             </ul>

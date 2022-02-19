@@ -29,6 +29,7 @@ class AdminController extends Controller {
     public function users(Request  $request) {
         $this->setTitle(__('messages.user-manager'));
         $this->setActiveMenu('users');
+        $this->setActiveSubMenu('users');
 
         if ($val = $request->input('val')) {
             if ($val['action'] == 'add') {
@@ -83,17 +84,12 @@ class AdminController extends Controller {
                     break;
             }
         }
-        return $this->render(view('cp.users', [
+        return $this->render(view('cp.users.list', [
             'users' => User::repository()->getUsers()
         ]), true);
     }
 
-    public function email(Request  $request) {
-        $this->setTitle(__('messages.email-setup'));
-        $this->setActiveMenu('email');
 
-        return $this->render(view('cp.email'), true);
-    }
 
     public function pages(Request  $request) {
         $this->setTitle(__('messages.pages-manager'));

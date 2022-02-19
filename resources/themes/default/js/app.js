@@ -83,7 +83,7 @@ var App = {
 
         $('.form-auto-submit').each(function() {
             var form = $(this);
-            $(this).find('input[type=checkbox],input[type=text],select,input[type=role]').change(function() {
+            $(this).find('input[type=checkbox],input[type=text],select,input[type=role],input[type=file]').change(function() {
                 form.submit();
             })
 
