@@ -14,7 +14,9 @@ class AdminController extends Controller {
     public function __construct()
     {
         parent::__construct();
+
         $this->setBackend();
+
     }
 
     public function index(Request $request) {
@@ -27,6 +29,7 @@ class AdminController extends Controller {
     public function users(Request  $request) {
         $this->setTitle(__('messages.user-manager'));
         $this->setActiveMenu('users');
+        $this->setActiveSubMenu('users');
 
         if ($val = $request->input('val')) {
             if ($val['action'] == 'add') {
@@ -81,17 +84,12 @@ class AdminController extends Controller {
                     break;
             }
         }
-        return $this->render(view('cp.users', [
+        return $this->render(view('cp.users.list', [
             'users' => User::repository()->getUsers()
         ]), true);
     }
 
-    public function email(Request  $request) {
-        $this->setTitle(__('messages.email-setup'));
-        $this->setActiveMenu('email');
 
-        return $this->render(view('cp.email'), true);
-    }
 
     public function pages(Request  $request) {
         $this->setTitle(__('messages.pages-manager'));
@@ -204,6 +202,7 @@ class AdminController extends Controller {
     public function settings(Request $request) {
         $this->setTitle('Settings');
         $this->setActiveMenu('settings');
+        $this->setActiveSubMenu('settings');
 
         if ($val = $request->input('val')) {
             if ($images = $request->input('img')) {
@@ -232,6 +231,27 @@ class AdminController extends Controller {
             ]);
         }
 
-        return $this->render(view('cp.settings'), true);
+        switch ($request->segment(3, 'general')) {
+            case 'information':
+                $this->setActiveMenu('information');
+                $content = view('cp.setup/information');
+                break;
+            case 'email':
+                $this->setActiveMenu('email');
+                $content = view('cp.setup/email');
+                break;
+            case 'social':
+                $this->setActiveMenu('social');
+                $content = view('cp.setup/social');
+                break;
+            case 'upload':
+                $this->setActiveMenu('upload');
+                $content = view('cp.setup/upload');
+                break;
+            default:
+                $content = view('cp.setup/general');
+                break;
+        }
+        return $this->render($content, true);
     }
 }
