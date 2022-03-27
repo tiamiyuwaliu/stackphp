@@ -17,8 +17,10 @@ class HomeController extends Controller {
     }
 
     public function index(Request $request) {
-        return $this->render(view('welcome'), true);
+        return $this->render(view('frontend.home'), true);
     }
+
+
 
     public function login(Request  $request) {
 

@@ -40,6 +40,26 @@
                        </li>
                     </ul>
                 </li>
+
+                <li class="has-sub-menus {{($controller->activeSubMenu == 'products' ? 'opened' : '')}}">
+                    <a  href="" onclick="return App.openMenu(this)"><i class="bi bi-cart3"></i> {{__('messages.products')}}</a>
+                    <i class="bi bi-plus plus"></i>
+                    <i class="bi bi-dash dash"></i>
+
+                    <ul>
+                        <li class="{{($controller->activeMenu == 'product' ? 'active' : '')}}">
+                            <a data-ajax="true" href="{{url('cp/products')}}" >{{__('messages.product-lists')}}</a>
+                        </li>
+                        <li class="{{($controller->activeMenu == 'plugins' ? 'active' : '')}}">
+                            <a data-ajax="true" href="{{url('cp/products/plugins')}}" >{{__('messages.plugins')}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="{{($controller->activeMenu == 'blogs' ? 'active' : '')}}">
+                    <a data-ajax="true" href="{{url('cp/blogs')}}" ><i class="bi bi-journal-richtext"></i> {{__('messages.blogs')}}</a>
+                </li>
+
                 <li class="{{($controller->activeMenu == 'modules' ? 'active' : '')}}">
                     <a data-ajax="true" href="{{url('cp/modules')}}" ><i class="bi bi-box" ></i> {{__('messages.modules-manager')}}</a>
                 </li>

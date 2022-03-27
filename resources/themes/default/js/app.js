@@ -8,6 +8,11 @@ $.ajaxSetup({
 });
 var App = {
     initScripts: function() {
+        $('.tooltip').hide();
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
         var options = {
             series: [{
                 name: 'TEAM A',
@@ -78,8 +83,11 @@ var App = {
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#admin-chart"), options);
-        chart.render();
+        if($('#admin-chart').length > 0) {
+            var chart = new ApexCharts(document.querySelector("#admin-chart"), options);
+            chart.render();
+        }
+
 
         $('.form-auto-submit').each(function() {
             var form = $(this);

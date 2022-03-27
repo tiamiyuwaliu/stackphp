@@ -18,6 +18,10 @@ Route::any('/login', [\App\Http\Controllers\HomeController::class, 'login'])->na
 Route::any('/signup', [\App\Http\Controllers\HomeController::class, 'signup']);
 Route::any('/logout', [\App\Http\Controllers\HomeController::class, 'logout']);
 
+
+Route::any('/home', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware(['auth']);
+Route::any('/account', [\App\Http\Controllers\DashboardController::class, 'account'])->middleware(['auth']);
+
 /**
  * Admin panel routes
  */
@@ -32,3 +36,8 @@ Route::any('/cp/email', [\App\Http\Controllers\AdminController::class, 'email'])
 Route::any('/cp/modules', [\App\Http\Controllers\AdminController::class, 'modules'])->middleware(['auth', 'admin']);
 Route::any('/cp/pages', [\App\Http\Controllers\AdminController::class, 'pages'])->middleware(['auth', 'admin']);
 Route::any('/cp/themes', [\App\Http\Controllers\AdminController::class, 'themes'])->middleware(['auth', 'admin']);
+Route::any('/cp/products', [\App\Http\Controllers\AdminController::class, 'products'])->middleware(['auth', 'admin']);
+Route::any('/cp/products/plugins', [\App\Http\Controllers\AdminController::class, 'products'])->middleware(['auth', 'admin']);
+Route::any('/cp/blogs', [\App\Http\Controllers\AdminController::class, 'blogs'])->middleware(['auth', 'admin']);
+
+

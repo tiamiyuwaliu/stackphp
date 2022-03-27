@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Package\Uploader;
+use App\Repositories\Blog;
 use App\Repositories\Module;
 use App\Repositories\Pages;
+use App\Repositories\Product;
 use App\Repositories\Settings;
 use App\Repositories\Theme;
 use App\Repositories\User;
@@ -253,5 +255,86 @@ class AdminController extends Controller {
                 break;
         }
         return $this->render($content, true);
+    }
+
+    public function products(Request $request) {
+        $this->setTitle(__('messages.products'));
+        $this->setActiveSubMenu('products');
+
+        $page = $request->segment(3, 'product');
+
+        $this->setActiveMenu($page);
+
+        if ($val = $request->input('val')) {
+            //populate unvalidated inputs manually , its not needed
+            $val['description'] = $_POST['description'];
+            $val['features'] = $_POST['features'];
+            $val['html'] = $_POST['html'];
+            $val['changelog'] = $_POST['changelog'];
+            $i = 1;
+            while($i<=2) {
+                if ($file = $request->file('image_'.$i)) {
+                    $uploader = new Uploader($file, 'image');
+                    $uploader->setPath("products/");
+                    if ($uploader->passed()) {
+                        $val['image_'.$i] = $uploader->uploadFile()->result();
+                    } else {
+                        return json_encode([
+                            'type' => 'error',
+                            'message' => $uploader->getError()
+                        ]);
+                    }
+                }
+
+
+                $i++;
+            }
+
+            if ($val['action'] == 'add') {
+                Product::repository()->save($val, null);
+                return json_encode([
+                    'type' => 'reload-modal',
+                    'content' => '#newProductModal',
+                    'message' => __('messages.product-added-successfully')
+                ]);
+            } else {
+                Product::repository()->save($val, $val['id']);
+                return json_encode([
+                    'type' => 'reload-modal',
+                    'content' => 'editProductModal'.$val['id'],
+                    'message' => __('messages.product-saved-successfully')
+                ]);
+            }
+        }
+
+        $products = Product::repository()->getList(($page == 'product') ? 1 : 2);
+
+        return $this->render(view('cp.products.index', ['page' => $page, 'products' => $products]), true);
+    }
+
+    public function blogs(Request $request) {
+        $this->setActiveMenu('blogs');
+
+        if ($val = $request->input('val')) {
+            $val['content'] = $_POST['html'];
+            if ($val['action'] == 'add') {
+                Blog::repository()->save($val, null);
+                return json_encode([
+                    'type' => 'reload-modal',
+                    'content' => '#newBlogModal',
+                    'message' => __('messages.blog-added-successfully')
+                ]);
+            } else {
+                Blog::repository()->save($val, $val['id']);
+                return json_encode([
+                    'type' => 'reload-modal',
+                    'content' => 'editBlogModal'.$val['id'],
+                    'message' => __('messages.blog-saved-successfully')
+                ]);
+            }
+        }
+
+        $blogs = Blog::repository()->getList();
+        return $this->render(view('cp.blogs.index', ['blogs' => $blogs]), true);
     }
 }

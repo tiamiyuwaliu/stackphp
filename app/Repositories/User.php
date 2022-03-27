@@ -66,6 +66,29 @@ class User   {
         ));
     }
 
+    public function saveAccount($val) {
+        $ext = array(
+            'name' => '',
+            'email' => '',
+            'password' => '',
+        );
+        /**
+         * @var $name
+         * @var $email
+         * @var $password
+         */
+        extract(array_merge($ext, $val));
+        $data = array(
+            'name' => $name,
+            'email' => $email,
+        );
+        if ($password) {
+            $password = Hash::make($password);
+            $data['password'] = $password;
+        }
+        DB::table('users')->where('id', $this->authId)->update($data);
+    }
+
     public function saveUser($val, $id) {
         $ext = array(
             'name' => '',
