@@ -22,6 +22,7 @@
                         <li class="{{($controller->activeMenu == 'email' ? 'active' : '')}}"><a href="{{url('cp/settings/email')}}" data-ajax="true">{{__('messages.email-setup')}} </a> </li>
                         <li class="{{($controller->activeMenu == 'social' ? 'active' : '')}}"><a href="{{url('cp/settings/social')}}" data-ajax="true">{{__('messages.social-settings')}} </a> </li>
                         <li class="{{($controller->activeMenu == 'upload' ? 'active' : '')}}"><a href="{{url('cp/settings/upload')}}" data-ajax="true">{{__('messages.upload-configuration')}} </a> </li>
+                        <li class="{{($controller->activeMenu == 'links' ? 'active' : '')}}"><a href="{{url('cp/settings/links')}}" data-ajax="true">{{__('messages.links')}} </a> </li>
                     </ul>
                 </li>
                 <li class="{{($controller->activeMenu == 'themes' ? 'active' : '')}}"><a data-ajax="true" href="{{url('cp/themes')}}" ><i class="bi bi-palette" ></i> {{__('messages.themes')}}</a> </li>

@@ -1,6 +1,6 @@
 <?php
 include_once 'install.php';
-Installation::processInstall();
+//Installation::processInstall();
 ?>
 <!doctype html>
 <html lang="en">

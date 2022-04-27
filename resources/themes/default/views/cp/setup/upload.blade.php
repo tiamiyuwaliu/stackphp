@@ -57,6 +57,24 @@
                     <label>{{__('messages.dropbox-api-key')}}</label>
                 </div>
 
+                <div class="clearfix mt-3 mb-3">
+                    <div class="float-start">
+                        <h6>{{__('messages.canva')}}</h6>
+                        <small>{{__('messages.canva-note')}}</small>
+                    </div>
+                    <div class="float-end">
+                        <div class="form-check form-switch">
+                            <input type="hidden" name="val[enable-canva]" value="0"/>
+                            <input name="val[enable-canva]" {{config('enable-canva', false) ? 'checked' : null}} class="form-check-input " type="checkbox" id="flexSwitchCheckCheckedCanvas" >
+                            <label class="form-check-label" for="flexSwitchCheckCheckedCanvas"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mt-3">
+                    <input placeholder="__('messages.canva-api-key')" type="text" class="form-control" value="{{config('canva-api-key', '')}}" name="val[canva-api-key]"/>
+                    <label>{{__('messages.canva-api-key')}}</label>
+                </div>
+
 
             </div>
 
@@ -93,6 +111,16 @@
                 <div class="form-floating mt-3">
                     <input placeholder="{{__('messages.allowed-extensions')}}" type="text" class="form-control" value="{{config('allowed-extensions', 'jpg,png,jpeg,gif,mkv,docx,zip,rar,pdf,doc,mp3,mp4,flv,wav,txt,mov,avi,webm,wav,mpeg')}}" name="val[allowed-extensions]"/>
                     <label>{{__('messages.allowed-extensions')}}</label>
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input placeholder="{{__('messages.allowed-image-extensions')}}" type="text" class="form-control" value="{{config('allowed-image-extensions', 'jpg,png,jpeg,gif')}}" name="val[allowed-image-extensions]"/>
+                    <label>{{__('messages.allowed-image-extensions')}}</label>
+                </div>
+
+                <div class="form-floating mt-3">
+                    <input placeholder="{{__('messages.allowed-video-extensions')}}" type="text" class="form-control" value="{{config('allowed-video-extensions', 'mp4,flv,wav,mov,avi,webm,wav,mpeg')}}" name="val[allowed-video-extensions]"/>
+                    <label>{{__('messages.allowed-video-extensions')}}</label>
                 </div>
 
                 <div class="mt-4">

@@ -1,7 +1,11 @@
 <?php
 namespace App\Package;
 
+
+
 use PHPImageWorkshop\ImageWorkshop;
+
+include app_path('Package/PHPImageWorkshop/autoload.php');
 
 class Uploader {
     /**
@@ -311,6 +315,10 @@ class Uploader {
         return !$this->error;
     }
 
+    public function setImageSizes($sizes) {
+        $this->imageSizes = $sizes;
+        return $this;
+    }
     /**
      * Function to set destination
      */

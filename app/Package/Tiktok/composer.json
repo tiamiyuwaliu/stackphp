@@ -1,0 +1,38 @@
+{
+
+  "name": "tiktok/tiktok",
+
+  "description": "Official Tiktok PHP Client",
+
+  "keywords": ["tiktok", "api", "sdk", "gif"],
+
+  "homepage": "https://github.com/tumblr/tumblr.php",
+
+  "authors": [
+    {
+      "name": "Tiamiyu waliu kola",
+      "email": "tiamiyuwaliu1212@gmail.com",
+      "homepage": "https://github.com/codalib",
+      "role": "developer"
+    }
+  ],
+
+  "license": "Apache-2.0",
+
+  "type": "library",
+
+  "require": {
+    "guzzlehttp/guzzle": "^7.3"
+  },
+
+  "require-dev": {
+    "phpunit/phpunit": "8.5.*"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "Tiktok\\API": "Lib"
+    }
+  }
+
+}

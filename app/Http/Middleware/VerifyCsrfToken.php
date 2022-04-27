@@ -12,6 +12,14 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'facebook',
+        'twitter/*',
+        'instagram/*',
+        'linkedin/*',
+        'pinterest/*',
+        'tiktok/*',
+        'reddit/*',
+        'tumblr/*',
+        'telegram/*'
     ];
 }

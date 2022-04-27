@@ -17,6 +17,7 @@ class HomeController extends Controller {
     }
 
     public function index(Request $request) {
+        return $this->login($request);
         return $this->render(view('welcome'), true);
     }
 
@@ -36,7 +37,7 @@ class HomeController extends Controller {
                     $request->session()->regenerate();
                     return json_encode([
                         'type' => 'normal-url',
-                        'value' => url('home')
+                        'value' => url('publish')
                     ]);
                 } else {
                     return json_encode([
@@ -62,7 +63,7 @@ class HomeController extends Controller {
                 'email' => 'required|email:filter,rfc,dns|unique:users,email',
                 'password' => 'required',
             ]);
-            $validators->validated();
+
 
             if (!$validators->fails()) {
                 User::repository()->addUser($val);
@@ -73,7 +74,7 @@ class HomeController extends Controller {
                     $request->session()->regenerate();
                     return json_encode([
                         'type' => 'normal-url',
-                        'value' => url('home')
+                        'value' => url('publish')
                     ]);
                 }
             } else {
@@ -84,7 +85,7 @@ class HomeController extends Controller {
             }
 
         }
-        return $this->render(view('frontend/signup'), true);
+        return $this->render(view('frontend/layouts/auth', ['content' => view('frontend/signup')]), true);
     }
 
     public function logout(Request $request) {

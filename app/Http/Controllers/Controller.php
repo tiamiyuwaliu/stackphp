@@ -72,13 +72,13 @@ class Controller extends BaseController
         Blade::withoutDoubleEncoding();
 
         if ($wrap) {
-
-            $content = view($this->pageLayout, array('content' => $content, 'controller' => $this));
+            $content = view($this->pageLayout, array('content' => $content, 'controller' => $this, 'active_menu'  => $this->activeMenu,));
         }
         if (isAjax()) {
             return json_encode(array(
                 'title' => $this->pageTitle,
                 'content' => $content->render(),
+                'active_menu'  => $this->activeMenu,
                 'container' => '#page-container',
             ));
         }

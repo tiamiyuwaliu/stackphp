@@ -42,6 +42,7 @@ class User   {
     public function getAvatar($user = null) {
         if (!$user) $user = $this->authUser;
         $avatar  = 'resources/themes/default/images/avatar.png';
+        if ($user and $user->avatar) $avatar = $user->avatar;
         return url($avatar);
     }
 
@@ -92,6 +93,11 @@ class User   {
             $data['password'] = $password;
         }
         DB::table('users')->where('id', $id)->update($data);
+    }
+
+    public function updateUser($data, $id = null) {
+        $id = ($id) ? $id : $this->authId;
+        return DB::table('users')->where('id', $id)->update($data);
     }
 
     public function getUsers($term = null, $termType = 'name', $limit = 20) {

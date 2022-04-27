@@ -248,6 +248,10 @@ class AdminController extends Controller {
                 $this->setActiveMenu('upload');
                 $content = view('cp.setup/upload');
                 break;
+            case 'links':
+                $this->setActiveMenu('links');
+                $content = view('cp.setup.links');
+                break;
             default:
                 $content = view('cp.setup/general');
                 break;
